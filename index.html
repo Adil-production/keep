@@ -19,7 +19,7 @@
             box-sizing: border-box;
             height: 100px;
             display: inline-block;
-            
+            box-shadow: 0px 0px 15px -5px rgb(160, 151, 124);
             /*   daba ndozo lkhdma niiichan    */
         }
         .item1{
@@ -31,7 +31,8 @@
             box-sizing: border-box;
             height: 35px;
             padding: 10px;
-            background-color: rgb(224, 224, 224);
+            background-color: rgb(51, 51, 51);
+            color: white;
         }
         
         #main{
@@ -51,6 +52,9 @@
                 <ion-title>
                         <ion-label>Porbet Keep</ion-label>
                 </ion-title>
+            </ion-toolbar>
+            <ion-toolbar>
+                <ion-searchbar id="input" oninput="myFunction()"></ion-searchbar>
             </ion-toolbar>
         </ion-header>
         <ion-content>
@@ -137,7 +141,20 @@
                     localStorage.removeItem("data")
                     window.location.reload()
                 })
-               
+                   //search
+function myFunction() {
+  var input = document.getElementById("input");
+  var filter = input.value.toLowerCase();
+  var nodes = document.getElementsByClassName('test');
+
+  for (i = 0; i < nodes.length; i++) {
+    if (nodes[i].innerText.toLowerCase().includes(filter)) {
+      nodes[i].style.display = "inline-block";
+    } else {
+      nodes[i].style.display = "none";
+    }
+  }
+}
             </script>
         </ion-content>
     </ion-app>
