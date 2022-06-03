@@ -4,162 +4,204 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Porbet Keep</title>
+    <title>Porbet keep</title>
     <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.esm.js"></script>
     <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core/dist/ionic/ionic.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core/css/ionic.bundle.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <style>
-        .test{
-            
-            border: solid 0.2px gray;
-            border-radius: 10px;
-            margin: 5px;
-            width: 140px;
-            overflow-y: hidden;
-            box-sizing: border-box;
-            height: 100px;
-            display: inline-block;
-            box-shadow: 0px 0px 15px -5px rgb(160, 151, 124);
-        }
-
-        .item1{
-            border: solid 0.2px gray;
-            border-radius: 10px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            overflow-y: hidden;
-            box-sizing: border-box;
-            height: 35px;
-            padding: 10px;
-            background-color: rgb(51, 51, 51);
-            color: white;
-        }
-        
         #content{
             word-break: break-word;
         }
         #content[placeholder]:empty:before {
-    content: attr(placeholder);
-    color: #555; 
-}
-        .input-warning{
-    width: 95%;
-    padding: 10px;
-    border: 0.1px solid rgb(212, 212, 212);
-    border-radius: 5px;
-    outline: rgb(165, 165, 165);
-}
-.input-warning:hover{
-    width: 95%;
-    padding: 10px;
-    border: 0.1px solid rgb(255, 219, 99);
-    border-radius: 5px;
-}
-.input-warning:focus{
-    width: 95%;
-    padding: 10px;
-    border: 0.1px solid rgb(218, 131, 0);
-    box-shadow: 0px 0px 15px -5px rgb(238, 107, 0);
-}
+            content: attr(placeholder);
+            color: #555; 
+        }
+        .input-purple{
+            width: 95%;
+            margin: 0;
+            padding: 10px;
+            border: 0.1px solid rgb(212, 212, 212);
+            border-radius: 5px;
+            outline: rgb(165, 165, 165);
+        }
+        .input-purple:hover{
+            width: 95%;
+            padding: 10px;
+            margin: 0;
+            border: 0.1px solid #959ef7;
+            border-radius: 5px;
+        }
+        .input-purple:focus{
+            width: 95%;
+            padding: 10px;
+            margin: 0;
+            border: 0.1px solid #5260ff;
+            box-shadow: 0px 0px 15px -5px #5260ff;
+        }
+        .block{
+          padding: 10px;
+          border-bottom: 0.2px solid gray;
+        }
+        .d{
+          display: inline-block;
+        }
+        .buttons{
+          position: absolute;
+          right: 5px;
+          transform: translateY(-10%);
+        }
+        .valueTitle{
+          font-weight: bold;
+          margin: 8px;
+          font-size: 20px;
+        }
+        #showTitle{
+          font-size: 30px;
+          font-weight: bold;
+          color: #5260ff;
+          padding: 5px;
+        }
+        #showContent{
+          padding: 10px;
+        }
+        .center{
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%,-50%);
+        }
     </style>
 </head>
 <body>
     <ion-app>
         <ion-header>
             <ion-toolbar>
-                <ion-buttons color="warning" slot="start" style="display: none;" id="back">
-                    <ion-button color="dark"> Back </ion-button>
+                <ion-title class="d"><span style="color: #5260ff !important;">Porbet keep</span></ion-title>
+                <ion-buttons id="back" style="display: none;" color="tertiary" slot="start">
+                  <ion-button color="tertiary">Back</ion-button>
                 </ion-buttons>
-                <ion-buttons color="warning" slot="end" style="display: none;" id="done">
-                    <ion-button  color="dark" style="margin: 10px;">Done</ion-button>
-                </ion-buttons>
-                <img src="keep.png" style="transform: translateX(20%);border-radius: 10px;" id="logo" width="35px" slot="start"/>
-                <ion-title>
-                        <ion-label>Porbet Keep</ion-label>
-                </ion-title>
             </ion-toolbar>
-            <ion-toolbar id="input2">
-                <ion-searchbar id="input" oninput="myFunction()"></ion-searchbar>
+            <ion-toolbar id="search2">
+              <ion-searchbar oninput="myFunction()" id="search"></ion-searchbar>
             </ion-toolbar>
         </ion-header>
         <ion-content>
-            <div id="1">
-                <ion-fab horizontal="end" color="warning" slot="fixed" vertical="bottom" id="add">
-                    <ion-fab-button color="warning">
-                        <ion-icon name="add-sharp"></ion-icon>
-                    </ion-fab-button>
-                </ion-fab>
-                <ion-fab style="position: fixed;" horizontal="center" color="warning" slot="fixed" vertical="bottom" id="delete">
-                    <ion-fab-button color="warning">
-                        <ion-icon name="trash-sharp"></ion-icon>
-                    </ion-fab-button>
-                </ion-fab>
-                <br>
-                <ul class="list-group" id="main"></ul>
-                
+            <div id="page">
+<br>
+<br>
+              <div style="padding: 10px;" align="center">
+                  <input class="input-purple" type="text" placeholder="Title" id="title" />
+                  <br>
+                  <br>
+                  <div id="content" contenteditable="" class="input-purple" align="left" placeholder="Content"></div>
+              </div>
+              <ion-fab horizontal="end"  slot="fixed" vertical="bottom" id="add">
+                  <ion-fab-button color="tertiary">
+                      <ion-icon name="add-sharp"></ion-icon>
+                  </ion-fab-button>
+              </ion-fab>
+              <br>
+              <br>
+              <div id="keeps"></div>
             </div>
-            
-            <div id="2" style="display: none;" align="center">
-                <br>
-                <br>
-                <input id="title" class="input-warning" style="margin: 5px;" placeholder="Title" />
-                <div id="content" contenteditable="" class="input-warning" style="margin: 5px;" align="left" placeholder="Content"></div>
+            <div id="shows" style="display: none; padding: 8px;">
+              <h2 id="showTitle"></h2>
+              <p id="showContent"></p>
             </div>
-            <div style="margin: 10px;" id="3">
-                <br>
-                <div align="center">
-                    <strong><h1 id="title3"></h1></strong>
-                </div>
-                <br>
-                <span id="content3" style="margin: 10px;"></span>
-            </div>
-            <br>
-            
-            <script>
-                document.getElementById("add").addEventListener("click",function(){
-                    document.getElementById("1").style.display = "none"
-                    document.getElementById("3").style.display = "none"
-                    document.getElementById("2").style.display = "block"
-                    document.getElementById("back").style.display = "block"
-                    document.getElementById("done").style.display = "block"
-                    document.getElementById("input2").style.display = "none"
-                    document.getElementById("logo").style.display = "none"
-                })
-                document.getElementById("back").addEventListener("click",function(){
-                    window.location.reload()
-                })
-                document.getElementById("done").addEventListener("click",function(){
-                    var title = document.getElementById("title").value;
-                    var content = document.getElementById("content").innerHTML;
-                    var data = localStorage.getItem("data");
-                    if(data){
-                        localStorage.setItem("data", data + `
-                        <li class="list-group-item" style='padding: 12px;' onclick="document.getElementById('title3').innerHTML = '${title}'; document.getElementById('content3').innerHTML = '${content}'; document.getElementById('3').style.display = 'block'; document.getElementById('1').style.display = 'none'; document.getElementById('input2').style.display = 'none';document.getElementById('back').style.display = 'block'; ">${title}</li>
-                        `);
-                        window.location.reload();
-                    } else{
-                        localStorage.setItem("data",`
-                        <li class="list-group-item" style='padding: 12px;'  onclick="document.getElementById('title3').innerHTML = '${title}'; document.getElementById('content3').innerHTML = '${content}'; document.getElementById('3').style.display = 'block';  document.getElementById('1').style.display = 'none'; document.getElementById('input2').style.display = 'none';document.getElementById('back').style.display = 'block';">${title}</li>
-                        `);
-                        window.location.reload();
-                    }
-                   
-                })
+        </ion-content>
+    </ion-app>
+    <script>
 
-                window.addEventListener("load",function(){
-                    document.getElementById("main").innerHTML = localStorage.getItem("data")
-                })
-                document.getElementById("delete").addEventListener("click",function(){
-                    localStorage.removeItem("data")
-                    window.location.reload()
-                })
-                   //search
-                function myFunction() {
-                    var input = document.getElementById("input");
+    
+        // On form submit add task
+        document.getElementById("add").addEventListener("click", function() {
+          addTask();
+        });
+    
+        function addTask(){
+          var title = document.getElementById("title");
+          var content = document.getElementById("content");
+          if(title.value == "" || content.innerHTML == ""){
+            alert("Sorry, one from these fields are empty")
+          } else {
+            let keeps = localStorage.getItem("keeps");
+            if(keeps == null){
+              keepsObj = [];
+            } else{
+              keepsObj = JSON.parse(keeps);
+            }
+            let myObj = {
+              title : title.value,
+              content : content.innerHTML
+            }
+            keepsObj.push(myObj);
+            localStorage.setItem("keeps", JSON.stringify(keepsObj))
+            title.value = "";
+            content.innerHTML = "";
+
+            showKeeps();
+          }
+          
+        }
+
+        // Show keeps
+
+        function showKeeps(){
+
+          let keeps = localStorage.getItem("keeps");
+          if(keeps == null){
+            keepsObj = [];
+          } else{
+            keepsObj = JSON.parse(keeps);
+          }
+          let html = "";
+          keepsObj.forEach(function(element,index) {
+            html += `
+              <div class="block" >
+                <span class="valueTitle d">${element.title}</span>
+                <div class="d buttons" align="left">
+                  <ion-button id="${index}" color="tertiary" onclick="deleteKeeps(this.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+                  <ion-button color="tertiary" onclick="   document.getElementById('page').style.display = 'none'; document.getElementById('search2').style.display = 'none';  document.getElementById('shows').style.display = 'block'; document.getElementById('back').style.display = 'inline-block';  document.getElementById('showTitle').innerHTML = '${element.title}'; document.getElementById('showContent').innerHTML = '${element.content}';  "><ion-icon name="open-outline"></ion-icon></ion-button>
+                </div>
+              </div>
+            `
+          });
+          let keepElm = document.getElementById("keeps");
+          if(keepsObj.length != 0){
+            keepElm.innerHTML = html;
+          } else {
+            keepElm.innerHTML = `
+              <div class="center" align="center">
+                <ion-icon name="book-outline" style="color:gray; font-size:30px"></ion-icon>
+                <h5 style="color:gray;">No keeps</h5>
+              </div>
+            `;
+          }
+        }
+        showKeeps();
+
+        function deleteKeeps(index){
+          let confirmDel = confirm("Do you really want to delete?");
+          
+          if(confirmDel){
+            let keeps = localStorage.getItem("keeps");
+            if(keeps == null){
+              keepsObj = [];
+            } else{
+              keepsObj = JSON.parse(keeps);
+            }
+            keepsObj.splice(index , 1);
+            localStorage.setItem("keeps", JSON.stringify(keepsObj));
+            showKeeps();
+          }
+        }
+        document.getElementById("back").addEventListener("click",function(){
+          window.location.reload();
+        })
+        function myFunction() {
+                    var input = document.getElementById("search");
                     var filter = input.value.toLowerCase();
-                    var nodes = document.getElementsByClassName('list-group-item');
+                    var nodes = document.getElementsByClassName('block');
 
                     for (i = 0; i < nodes.length; i++) {
                         if (nodes[i].innerText.toLowerCase().includes(filter)) {
@@ -168,9 +210,7 @@
                         nodes[i].style.display = "none";
                         }
                     }
-                }
-            </script>
-        </ion-content>
-    </ion-app>
+      }
+      </script>
 </body>
 </html>
